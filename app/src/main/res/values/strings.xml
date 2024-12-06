@@ -19,10 +19,6 @@
     <string name="login_error_msg_empty_email_mobile">Please enter your email or mobile number</string>
     <string name="login_error_msg_empty_password">Please enter your password</string>
 
-    <!--Login Page - Register Section-->
-    <string name="do_not_have_account">Don\'t have an account?</string>
-    <string name="register">Register</string>
-
     <string name="medication">Medication:</string>
     <string name="done">Done</string>
 </resources>
