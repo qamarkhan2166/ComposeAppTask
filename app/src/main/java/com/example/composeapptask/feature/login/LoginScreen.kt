@@ -20,8 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.composeapptask.R
 import com.example.composeapptask.ui.theme.AppTheme
-import com.jodhpurtechies.composelogin.ui.common.customComposableViews.MediumTitleText
-import com.jodhpurtechies.composelogin.ui.common.customComposableViews.TitleText
+import com.example.composeapptask.feature.common.customComposableViews.MediumTitleText
+import com.example.composeapptask.feature.common.customComposableViews.TitleText
 
 @Composable
 fun LoginScreen(onNavigateForward: () -> Unit) {

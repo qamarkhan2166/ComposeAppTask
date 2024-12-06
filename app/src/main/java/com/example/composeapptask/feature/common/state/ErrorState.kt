@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import com.example.composeapptask.R
 
 /**
- * Error state holding values for error ui
+ * Error state holding values for error
  */
 data class ErrorState(
     val hasError: Boolean = false,

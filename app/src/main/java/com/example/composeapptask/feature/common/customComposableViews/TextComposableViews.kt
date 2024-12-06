@@ -1,4 +1,4 @@
-package com.jodhpurtechies.composelogin.ui.common.customComposableViews
+package com.example.composeapptask.feature.common.customComposableViews
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text

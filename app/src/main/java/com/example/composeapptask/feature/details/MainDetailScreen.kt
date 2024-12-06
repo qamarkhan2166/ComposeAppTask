@@ -84,7 +84,7 @@ private fun MainDetailScreenContent(
                 .fillMaxWidth()
                 .padding(bottom = 20.dp)
         ) {
-            Text("Done")
+            Text(stringResource(R.string.done))
         }
     }
 }
@@ -165,7 +165,7 @@ private fun RowText(
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewMainDetailScreenContent() {
+private fun PreviewMainDetailScreenContent() {
     MainDetailScreenContent(
         onClick = {},
         uiState = MainDetailUiState(

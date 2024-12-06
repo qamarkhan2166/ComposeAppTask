@@ -2,10 +2,7 @@ package com.example.composeapptask.feature.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.composeapptask.api.NetworkResult
 import com.example.composeapptask.data.UserPreferences
-import com.example.composeapptask.feature.dao.UserMedicationResponse
-import com.example.composeapptask.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,7 +12,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class LoginScreenViewModel @Inject constructor(
-    private val repository: MainRepository,
     private val userPreferences: UserPreferences
 ) : ViewModel() {
 
@@ -34,7 +30,7 @@ internal class LoginScreenViewModel @Inject constructor(
 
     fun onClickLogin(onProceedNext:() -> Unit) {
         viewModelScope.launch {
-            saveUserType(uiState.value.emailOrMobile)
+            saveUserType(userType = uiState.value.emailOrMobile)
             onProceedNext.invoke()
         }
     }

@@ -23,6 +23,7 @@ sealed class Routes {
 }
 
 fun NavGraphBuilder.mainGraph(navController: NavController) {
+
     composable<Routes.LoginScreen> {
         LoginScreen(
             onNavigateForward = {
@@ -32,6 +33,7 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
             }
         )
     }
+
     composable<Routes.AppMainScreen>(
         typeMap = mapOf(
             typeOf<ScreenInfo>() to CustomNavType(

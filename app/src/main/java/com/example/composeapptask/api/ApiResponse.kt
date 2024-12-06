@@ -45,6 +45,7 @@ abstract class BaseApiResponse {
             return error(409, e.message ?: e.toString())
         }
     }
+
     private fun <T> error(code: Int, errorMessage: String): NetworkResult<T> =
         NetworkResult.Error(code, "Api call failed $errorMessage")
 }

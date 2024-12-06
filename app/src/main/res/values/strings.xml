@@ -24,4 +24,5 @@
     <string name="register">Register</string>
 
     <string name="medication">Medication:</string>
+    <string name="done">Done</string>
 </resources>
