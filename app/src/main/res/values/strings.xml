@@ -21,4 +21,9 @@
 
     <string name="medication">Medication:</string>
     <string name="done">Done</string>
+
+    <!--Bottom Nav strings-->
+    <string name="discover_tab_title">Discover</string>
+    <string name="all_chats_tab_title">All Chats</string>
+    <string name="profile_tab_title">Profile</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.composeapptask.feature.details
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.composeapptask.api.NetworkResult
@@ -46,12 +47,15 @@ internal class MainDetailViewModel @Inject constructor(
                 is NetworkResult.Success -> {
                     val response: UserMedicationResponse? = networkResponse.data
                     response?.let {
+                        Log.e("response->", response.toString())
                         _uiState.update { it.copy(userMedicationResponse = response) }
                         println(response.toString())
+                    } ?: run {
+                        Log.e("response->", "Unable to load response")
                     }
                 }
 
-                else -> updateError(message = networkResponse.message.toString())
+                else -> updateError(message = networkResponse.message ?: (networkResponse as NetworkResult.Error).messageValue)
             }
         }
     }
