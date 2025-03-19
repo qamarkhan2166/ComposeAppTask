@@ -1,65 +1,32 @@
 package com.example.composeapptask.ui.theme
 
-import android.app.Activity
-import android.os.Build
+import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.runtime.*
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalView
-import androidx.core.view.ViewCompat
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+data class CustomColorScheme(
+    val customPrimary: Color,
+    val customSecondary: Color,
+    val whiteColor: Color,
+    val customError: Color = Color(0xFFB00020),
+    val baseColorScheme: ColorScheme,
+    val grayColor: Color,
+    val greenColor: Color,
+    val successGreen: Color,
+    val accentPurple: Color,
+    val mediumGray: Color,
+    val white: Color,
+    val black: Color,
 )
-
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
-)
-
-@Composable
-fun ComposeAppTaskTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
-) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
-}
 
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
@@ -87,7 +54,7 @@ private val LightColors = lightColorScheme(
     outline = md_theme_light_outline,
     inverseOnSurface = md_theme_light_inverseOnSurface,
     inverseSurface = md_theme_light_inverseSurface,
-    inversePrimary = md_theme_light_inversePrimary
+    inversePrimary = md_theme_light_inversePrimary,
 )
 
 private val DarkColors = darkColorScheme(
@@ -119,9 +86,39 @@ private val DarkColors = darkColorScheme(
     inversePrimary = md_theme_dark_inversePrimary
 )
 
-private val LocalAppDimens = staticCompositionLocalOf {
-    normalDimensions
-}
+val LightCustomColors = CustomColorScheme(
+    baseColorScheme = LightColors,
+    customPrimary = Color(0xFF6200EE),
+    customSecondary = Color(0xFF03DAC6),
+    whiteColor = Color(0xFFFFFFFF),
+    grayColor = Color(0xff858A93),
+    greenColor = Color(0xff4BDF97),
+    successGreen = md_theme_light_SuccessGreen,
+    accentPurple = md_theme_light_AccentPurple,
+    mediumGray = md_theme_light_MediumGray,
+    white = md_theme_light_White,
+    black = md_theme_light_scrim
+)
+
+val DarkCustomColors = CustomColorScheme(
+    baseColorScheme = DarkColors,
+    customPrimary = Color(0xFFB00020),
+    customSecondary = Color(0xFF03DAC6),
+    whiteColor = Color(0xFF121212),
+    grayColor = Color(0xff858A93),
+    greenColor = Color(0xff4BDF97),
+    successGreen = md_theme_dark_SuccessGreen,
+    accentPurple = md_theme_dark_AccentPurple,
+    mediumGray = md_theme_dark_MediumGray,
+    white = md_theme_dark_White,
+    black = md_theme_light_scrim
+)
+
+private val LocalAppDimens = staticCompositionLocalOf { normalDimensions }
+val LocalCustomColors = staticCompositionLocalOf { LightCustomColors }
+
+@SuppressLint("CompositionLocalNaming")
+internal val currentTypography = staticCompositionLocalOf { AppTypography() }
 
 @Composable
 fun ProvideDimens(
@@ -134,37 +131,40 @@ fun ProvideDimens(
 
 
 @Composable
-fun ComposeLoginTheme(
+fun CustomAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-        darkTheme -> DarkColors
-        else -> LightColors
-    }
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
-            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
-        }
-    }
-
-    //Dimensions (calculate dimens here based on screen size)
+    val customColors = if (darkTheme) DarkCustomColors else LightCustomColors
     val dimensions = normalDimensions
+    val typography = AppTypography()
+    CompositionLocalProvider(
+        LocalCustomColors provides customColors
+    ) {
+        ProvideDimens(dimensions = dimensions) {
+            MaterialTheme(
+                colorScheme = customColors.baseColorScheme,
+                content = content,
+                typography = MaterialTheme.typography.copy(
+                    displayLarge = typography.displayLarge,
+                    displayMedium = typography.displayMedium,
+                    displaySmall = typography.displaySmall,
+                    headlineLarge = typography.headlineLarge,
+                    headlineMedium = typography.headlineMedium,
+                    headlineSmall = typography.headlineSmall,
+                    titleLarge = typography.titleLarge,
+                    titleMedium = typography.titleMedium,
+                    titleSmall = typography.titleSmall,
+                    bodyLarge = typography.bodyLarge,
+                    bodyMedium = typography.bodyMedium,
+                    bodySmall = typography.bodySmall,
+                    labelLarge = typography.labelLarge,
+                    labelMedium = typography.labelMedium,
+                    labelSmall = typography.labelSmall
+                ),
+            )
+        }
 
-    ProvideDimens(dimensions = dimensions) {
-        MaterialTheme(
-            colorScheme = colorScheme,
-            typography = Typography,
-            content = content
-        )
     }
 }
 
@@ -172,4 +172,13 @@ object AppTheme {
     val dimens: Dimensions
         @Composable
         get() = LocalAppDimens.current
+
+    val colors: CustomColorScheme
+        @Composable
+        get() = LocalCustomColors.current
+
+    val typography: AppTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = currentTypography.current
 }

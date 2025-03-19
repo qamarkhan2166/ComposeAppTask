@@ -5,6 +5,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import com.example.composeapptask.feature.AllChatScreen
+import com.example.composeapptask.feature.ProfileScreen
 import com.example.composeapptask.feature.dao.CustomNavType
 import com.example.composeapptask.feature.dao.ScreenInfo
 import com.example.composeapptask.feature.details.MainDetailScreen
@@ -17,6 +19,11 @@ sealed class Routes {
     @Serializable
     data object LoginScreen : Routes()
 
+    // Bottom Navigation Screens
+    @Serializable data object DashboardScreen : Routes()
+    @Serializable data object AllChatScreen : Routes()
+    @Serializable data object ProfileScreen : Routes()
+
     @Serializable
     data class AppMainScreen(val screenInfo: ScreenInfo) : Routes()
 
@@ -27,14 +34,29 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
     composable<Routes.LoginScreen> {
         LoginScreen(
             onNavigateForward = {
-                navController.navigate(
-                    Routes.AppMainScreen(screenInfo = ScreenInfo(route = "AppMainScreen", id = 1))
-                )
+                navController.navigate(Routes.DashboardScreen)
             }
         )
     }
 
-    composable<Routes.AppMainScreen>(
+    composable<Routes.AllChatScreen> {
+        AllChatScreen()
+    }
+
+    composable<Routes.ProfileScreen> {
+        ProfileScreen()
+    }
+
+    composable<Routes.DashboardScreen> {
+        MainDetailScreen(
+            onNavigateBack = {
+                navController.navigate(Routes.LoginScreen)
+            }
+        )
+    }
+
+    // @keep this code for now
+    /*composable<Routes.AppMainScreen>(
         typeMap = mapOf(
             typeOf<ScreenInfo>() to CustomNavType(
                 ScreenInfo::class.java,
@@ -49,5 +71,5 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
                 navController.navigate(Routes.LoginScreen)
             }
         )
-    }
+    }*/
 }
