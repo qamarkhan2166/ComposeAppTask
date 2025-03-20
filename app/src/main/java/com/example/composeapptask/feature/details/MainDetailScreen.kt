@@ -40,7 +40,7 @@ fun MainDetailScreen(onNavigateBack: () -> Unit) {
     val viewModel: MainDetailViewModel = hiltViewModel()
     val uiState by viewModel.uiState.collectAsState()
     Scaffold(
-        containerColor = Color.White,
+        containerColor = Color.Red,
     ) { innerPadding ->
         Column(
             modifier = Modifier

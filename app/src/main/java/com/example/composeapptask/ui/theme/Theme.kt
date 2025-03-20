@@ -86,9 +86,9 @@ private val DarkColors = darkColorScheme(
     inversePrimary = md_theme_dark_inversePrimary
 )
 
-val LightCustomColors = CustomColorScheme(
+fun lightCustomColors(primaryColor: Color?) = CustomColorScheme(
     baseColorScheme = LightColors,
-    customPrimary = Color(0xFF6200EE),
+    customPrimary = primaryColor ?: md_theme_light_secondary,
     customSecondary = Color(0xFF03DAC6),
     whiteColor = Color(0xFFFFFFFF),
     grayColor = Color(0xff858A93),
@@ -100,9 +100,9 @@ val LightCustomColors = CustomColorScheme(
     black = md_theme_light_scrim
 )
 
-val DarkCustomColors = CustomColorScheme(
+fun darkCustomColors(primaryColor: Color?) = CustomColorScheme(
     baseColorScheme = DarkColors,
-    customPrimary = Color(0xFFB00020),
+    customPrimary = primaryColor ?: md_theme_light_secondary,
     customSecondary = Color(0xFF03DAC6),
     whiteColor = Color(0xFF121212),
     grayColor = Color(0xff858A93),
@@ -115,7 +115,7 @@ val DarkCustomColors = CustomColorScheme(
 )
 
 private val LocalAppDimens = staticCompositionLocalOf { normalDimensions }
-val LocalCustomColors = staticCompositionLocalOf { LightCustomColors }
+val LocalCustomColors = staticCompositionLocalOf { lightCustomColors(primaryColor = md_theme_light_secondary) }
 
 @SuppressLint("CompositionLocalNaming")
 internal val currentTypography = staticCompositionLocalOf { AppTypography() }
@@ -133,9 +133,10 @@ fun ProvideDimens(
 @Composable
 fun CustomAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
+    primaryColor: Color?
 ) {
-    val customColors = if (darkTheme) DarkCustomColors else LightCustomColors
+    val customColors = if (darkTheme) darkCustomColors(primaryColor) else lightCustomColors(primaryColor)
     val dimensions = normalDimensions
     val typography = AppTypography()
     CompositionLocalProvider(

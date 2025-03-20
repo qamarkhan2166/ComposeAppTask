@@ -6,7 +6,7 @@
 
     <string name="navigate_back">Navigate to the previous screen</string>
 
-    <!--Login-->
+    <!--region Login strings-->
     <string name="login_heading_text">Login</string>
     <string name="login_email_id_or_phone_label">Email ID or Mobile Number</string>
     <string name="login_password_label">Password</string>
@@ -15,15 +15,53 @@
     <string name="icon_password_visible">Password Visible</string>
     <string name="icon_password_hidden">Password Hidden</string>
 
-    <!--Login Error Messages-->
+    <!--region Login Error Messages string-->
     <string name="login_error_msg_empty_email_mobile">Please enter your email or mobile number</string>
     <string name="login_error_msg_empty_password">Please enter your password</string>
 
     <string name="medication">Medication:</string>
     <string name="done">Done</string>
 
-    <!--Bottom Nav strings-->
+    <!--region Bottom Nav strings-->
     <string name="discover_tab_title">Discover</string>
     <string name="all_chats_tab_title">All Chats</string>
     <string name="profile_tab_title">Profile</string>
+
+    <!--region Task Manager Strings-->
+    <string name="task_title">Title*</string>
+    <string name="task_title_error">this is custom error</string>
+    <string name="task_title_placeholder">please enter task title</string>
+    <string name="task_description">Task Description</string>
+    <string name="task_description_placeholder">please enter the detail description</string>
+    <string name="task_priority">Priority</string>
+    <string name="priority_high">High</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_low">Low</string>
+    <string name="card_label">Card label</string>
+    <string name="dob_placeholder">yyyy/mm/dd</string>
+    <string name="due_date">Due Date</string>
+    <string name="status">Status</string>
+
+    <string name="task_label">Task Title: </string>
+    <string name="task_description_label">Description:</string>
+    <string name="task_due_date">Due Date: </string>
+    <string name="delete_btn">Delete Task</string>
+    <string name="complete_btn">Mark as Completed</string>
+
+    <string name="filter_priority">Priority</string>
+    <string name="filter_due_date">Due Date</string>
+    <string name="filter_alphabetically">Alphabetically</string>
+
+    <string name="filter_all">All</string>
+    <string name="filter_pending">Pending</string>
+    <string name="filter_completed">Completed</string>
+    <string name="details_btn">Details</string>
+    <string name="sort_by">Sort By</string>
+    <string name="filter_by_status">Filter by status</string>
+    <string name="no_data_found">No Data Found</string>
+    <string name="save_task_btn">Save Task</string>
+    <string name="change_color_btn">Change Color</string>
+    <string name="select_primary_color">Select Primary Color</string>
+    <string name="color_success_message">Color Updated Successfully</string>
+    <!--endregion Task Manager Strings-->
 </resources>

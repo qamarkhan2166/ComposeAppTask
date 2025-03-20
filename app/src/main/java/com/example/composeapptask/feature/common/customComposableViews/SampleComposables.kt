@@ -1,4 +1,4 @@
-package com.example.composeapptask.feature
+package com.example.composeapptask.feature.common.customComposableViews
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

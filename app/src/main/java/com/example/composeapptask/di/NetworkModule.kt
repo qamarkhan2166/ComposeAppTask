@@ -2,6 +2,8 @@ package com.example.composeapptask.di
 
 import com.example.composeapptask.api.ApiService
 import com.example.composeapptask.api.RetrofitHelper
+import com.example.composeapptask.feature.dao.taskFeature.TaskEntityDao
+import com.example.composeapptask.repository.LocalDatabaseTaskFeatureRepository
 import com.example.composeapptask.repository.MainRepository
 import dagger.Module
 import dagger.Provides
@@ -42,4 +44,9 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideMainRepository(apiService: ApiService) = MainRepository(apiService)
+
+    @Singleton
+    @Provides
+    fun provideLocalDatabaseTaskFeatureRepository(dao: TaskEntityDao) =
+        LocalDatabaseTaskFeatureRepository(taskEntityDao = dao,)
 }

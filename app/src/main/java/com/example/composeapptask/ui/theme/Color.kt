@@ -13,7 +13,7 @@ val md_theme_light_secondaryContainer = Color(0xFF14122A)
 val md_theme_light_onSecondaryContainer = Color(0xFF00210E)
 val md_theme_light_tertiary = Color(0xFFFCBE19)
 val md_theme_light_onTertiary = Color(0xFFFFFFFF)
-val md_theme_light_tertiaryContainer = Color(0xFFD8E2FF)
+val md_theme_light_tertiaryContainer = Color(0xFFCCCCCC)
 val md_theme_light_onTertiaryContainer = Color(0xFF001A41)
 val md_theme_light_error = Color(0xFFBA1A1A)
 val md_theme_light_errorContainer = Color(0xFFFFDAD6)
@@ -32,7 +32,7 @@ val md_theme_light_inversePrimary = Color(0xFF96CCFF)
 val md_theme_light_scrim = Color(0xFF000000)
 val md_theme_light_SuccessGreen = Color(0xFF4BDF97)
 val md_theme_light_AccentPurple = Color(0xFF776EF8)
-val md_theme_light_MediumGray = Color(0xFF707070)
+val md_theme_light_MediumGray = Color(0xFFF6F6F6)
 val md_theme_light_White = Color.White
 
 // Dark Theme Colors
@@ -66,3 +66,35 @@ val md_theme_dark_SuccessGreen = Color(0xFF4BDF97)
 val md_theme_dark_AccentPurple = Color(0xFF776EF8)
 val md_theme_dark_MediumGray = Color(0xFF707070)
 val md_theme_dark_White = Color.White
+
+//######################################
+//##### Just For Setting Screen ########
+//######################################
+val lightColorsList = listOf(
+    md_theme_light_primary,
+    md_theme_light_onPrimary,
+    md_theme_light_primaryContainer,
+    md_theme_light_onPrimaryContainer,
+    md_theme_light_secondary,
+    md_theme_light_onSecondary,
+    md_theme_light_secondaryContainer,
+    md_theme_light_onSecondaryContainer,
+    md_theme_light_tertiary,
+    md_theme_light_onTertiary,
+    md_theme_light_tertiaryContainer,
+    md_theme_light_onTertiaryContainer,
+    md_theme_light_error,
+    md_theme_light_errorContainer,
+    md_theme_light_onError,
+    md_theme_light_onErrorContainer,
+    md_theme_light_background,
+    md_theme_light_onBackground,
+    md_theme_light_surface,
+    md_theme_light_onSurface,
+    md_theme_light_surfaceVariant,
+    md_theme_light_onSurfaceVariant,
+    md_theme_light_outline,
+    md_theme_light_inverseOnSurface,
+    md_theme_light_inverseSurface,
+    md_theme_light_inversePrimary
+)

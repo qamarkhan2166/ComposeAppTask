@@ -1,18 +1,14 @@
-package com.example.composeapptask
+package com.example.composeapptask.navigation
 
-import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import androidx.navigation.toRoute
-import com.example.composeapptask.feature.AllChatScreen
-import com.example.composeapptask.feature.ProfileScreen
-import com.example.composeapptask.feature.dao.CustomNavType
+import com.example.composeapptask.feature.common.customComposableViews.AllChatScreen
+import com.example.composeapptask.feature.common.customComposableViews.ProfileScreen
 import com.example.composeapptask.feature.dao.ScreenInfo
 import com.example.composeapptask.feature.details.MainDetailScreen
 import com.example.composeapptask.feature.login.LoginScreen
 import kotlinx.serialization.Serializable
-import kotlin.reflect.typeOf
 
 @Serializable
 sealed class Routes {
