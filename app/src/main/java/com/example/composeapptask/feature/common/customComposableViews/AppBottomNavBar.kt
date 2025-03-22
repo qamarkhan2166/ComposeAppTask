@@ -21,7 +21,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.composeapptask.R
-import com.example.composeapptask.Routes
+import com.example.composeapptask.navigation.Routes
 import com.example.composeapptask.ui.theme.AppTheme
 import kotlinx.serialization.Serializable
 
