@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!--region Sensor Based Activity Feature starts-->
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+    <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!--end region Sensor Based Activity Feature-->
+
     <application
         android:name=".BaseApplication"
         android:enableOnBackInvokedCallback="true"
@@ -19,7 +35,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.ComposeAppTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +42,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--region Sensor Based Activity Feature starts-->
+        <receiver android:name=".appFeatures.sensorActivity.receiver.ReminderReceiver" />
+
+        <service
+            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+            android:directBootAware="false" />
+
+        <service
+            android:name=".appFeatures.sensorActivity.services.ActivityTrackingService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="health"
+            />
+
+        <receiver
+            android:name=".appFeatures.sensorActivity.receiver.ActivityTransitionsReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.composeapptask.ACTION_ACTIVITY_TRANSITION" />
+                <action android:name="com.google.android.gms.location.ACTIVITY_TRANSITION" />
+            </intent-filter>
+        </receiver>
+        <!--end region Sensor Based Activity Feature-->
+
     </application>
 
 </manifest>

@@ -12,11 +12,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.example.composeapptask.feature.common.customComposableViews.BottomNavigationBar
-import com.example.composeapptask.feature.common.utils.LaunchedEffectOneTime
-import com.example.composeapptask.feature.common.utils.REQUIRE_APP_BOTTOM_NAV
-import com.example.composeapptask.navigation.TaskFeatureNavigationRoutes
-import com.example.composeapptask.navigation.taskFeatureMainNavigation
+import com.example.composeapptask.appFeatures.common.customComposableViews.BottomNavigationBar
+import com.example.composeapptask.appFeatures.common.utils.LaunchedEffectOneTime
+import com.example.composeapptask.appFeatures.common.utils.REQUIRE_APP_BOTTOM_NAV
+import com.example.composeapptask.navigation.ActivitySensorNavigationRoutes
+import com.example.composeapptask.navigation.activitySensorMainNavigation
 import com.example.composeapptask.ui.theme.CustomAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,10 +43,10 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     NavHost(
                         navController = navController,
-                        startDestination = TaskFeatureNavigationRoutes.HomeScreenRoute,
+                        startDestination = ActivitySensorNavigationRoutes.ActivityTractorScreen,
                         modifier = Modifier.padding(innerPadding)
                     ) {
-                        taskFeatureMainNavigation(navController)
+                        activitySensorMainNavigation(navController)
                     }
                 }
             })

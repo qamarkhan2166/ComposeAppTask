@@ -3,11 +3,11 @@ package com.example.composeapptask.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.composeapptask.feature.common.customComposableViews.AllChatScreen
-import com.example.composeapptask.feature.common.customComposableViews.ProfileScreen
-import com.example.composeapptask.feature.dao.ScreenInfo
-import com.example.composeapptask.feature.details.MainDetailScreen
-import com.example.composeapptask.feature.login.LoginScreen
+import com.example.composeapptask.appFeatures.common.customComposableViews.AllChatScreen
+import com.example.composeapptask.appFeatures.common.customComposableViews.ProfileScreen
+import com.example.composeapptask.appFeatures.dao.ScreenInfo
+import com.example.composeapptask.appFeatures.details.MainDetailScreen
+import com.example.composeapptask.appFeatures.login.LoginScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
