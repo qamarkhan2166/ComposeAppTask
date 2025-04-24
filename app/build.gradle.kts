@@ -24,9 +24,29 @@ android {
         }
     }
 
+    productFlavors {
+        create("default") {
+
+        }
+        create("taskify") {
+
+        }
+
+        create("sensorTracker") {
+
+        }
+    }
+
+    flavorDimensions += "appType"
+
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+            isShrinkResources = false
+        }
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -42,6 +62,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.15"

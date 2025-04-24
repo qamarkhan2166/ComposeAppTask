@@ -6,7 +6,6 @@ import androidx.room.TypeConverters
 import com.example.composeapptask.appFeatures.dao.sensorActivity.ActivityTransition
 import com.example.composeapptask.appFeatures.dao.sensorActivity.ActivityTransitionDao
 import com.example.composeapptask.appFeatures.dao.sensorActivity.Converters
-import com.example.composeapptask.appFeatures.dao.sensorActivity.DateConverter1
 import com.example.composeapptask.appFeatures.dao.sensorActivity.LocationPoint
 import com.example.composeapptask.appFeatures.dao.sensorActivity.LocationPointDao
 import com.example.composeapptask.appFeatures.dao.sensorActivity.MedicineReminder

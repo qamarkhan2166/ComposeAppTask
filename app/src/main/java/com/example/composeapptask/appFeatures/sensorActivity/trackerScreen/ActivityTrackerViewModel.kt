@@ -116,8 +116,17 @@ internal class ActivityTrackerViewModel @Inject constructor(
                     filter,
                     Context.RECEIVER_NOT_EXPORTED
                 )
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.registerReceiver(
+                    activityUpdateReceiver,
+                    filter,
+                    Context.RECEIVER_NOT_EXPORTED
+                )
             } else {
-                context.registerReceiver(activityUpdateReceiver, filter)
+                context.registerReceiver(
+                    activityUpdateReceiver,
+                    filter
+                )
             }
         } catch (e: Exception) {
             Log.e("ViewModel", "Receiver registration failed", e)
