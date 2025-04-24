@@ -1,13 +1,24 @@
 package com.example.composeapptask.di
 
+import android.content.Context
+import android.hardware.SensorManager
+import androidx.work.WorkManager
 import com.example.composeapptask.api.ApiService
 import com.example.composeapptask.api.RetrofitHelper
-import com.example.composeapptask.feature.dao.taskFeature.TaskEntityDao
+import com.example.composeapptask.appFeatures.dao.sensorActivity.MedicineReminderDao
+import com.example.composeapptask.appFeatures.dao.sensorActivity.SessionDao
+import com.example.composeapptask.appFeatures.dao.taskFeature.TaskEntityDao
+import com.example.composeapptask.appFeatures.sensorActivity.services.ActivityTrackingService
 import com.example.composeapptask.repository.LocalDatabaseTaskFeatureRepository
 import com.example.composeapptask.repository.MainRepository
+import com.example.composeapptask.repository.MedicineRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ServiceComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ServiceScoped
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -49,4 +60,34 @@ class NetworkModule {
     @Provides
     fun provideLocalDatabaseTaskFeatureRepository(dao: TaskEntityDao) =
         LocalDatabaseTaskFeatureRepository(taskEntityDao = dao,)
+
+    @Singleton
+    @Provides
+    fun provideMedicineRepository(dao: MedicineReminderDao, sessionDao: SessionDao) =
+        MedicineRepository(dao = dao, sessionDao = sessionDao)
+
+    @Provides
+    fun provideSensorManager(
+        @ApplicationContext context: Context
+    ): SensorManager {
+        return context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    }
+
+    @Provides
+    fun provideWorkManager(
+        @ApplicationContext context: Context
+    ): WorkManager {
+        return WorkManager.getInstance(context)
+    }
+}
+
+@Module
+@InstallIn(ServiceComponent::class)
+abstract class ActivityTrackingServiceModule {
+
+    @Binds
+    @ServiceScoped
+    abstract fun bindActivityTrackingService(
+        activityTrackingService: ActivityTrackingService
+    ): ActivityTrackingService
 }

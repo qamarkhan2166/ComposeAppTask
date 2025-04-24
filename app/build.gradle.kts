@@ -24,9 +24,29 @@ android {
         }
     }
 
+    productFlavors {
+        create("default") {
+
+        }
+        create("taskify") {
+
+        }
+
+        create("sensorTracker") {
+
+        }
+    }
+
+    flavorDimensions += "appType"
+
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+            isShrinkResources = false
+        }
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -42,6 +62,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.15"
@@ -67,6 +88,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit.core)
     implementation(libs.hilt.android)
+    implementation(libs.play.services.location)
     ksp(libs.hilt.compiler)
     implementation (libs.converter.gson)
     implementation(libs.androidx.hilt.navigation.compose)
@@ -76,6 +98,9 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     implementation(libs.lottie.compose)
+    implementation(libs.androidx.work.runtime)
+    implementation(libs.androidx.work)
+    // implementation(libs.play.services.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

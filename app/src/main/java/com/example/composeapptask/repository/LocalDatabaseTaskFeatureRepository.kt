@@ -1,10 +1,10 @@
 package com.example.composeapptask.repository
 
-import com.example.composeapptask.feature.dao.taskFeature.TaskEntity
-import com.example.composeapptask.feature.dao.taskFeature.TaskEntityDao
+import com.example.composeapptask.appFeatures.dao.taskFeature.TaskEntity
+import com.example.composeapptask.appFeatures.dao.taskFeature.TaskEntityDao
 import kotlinx.coroutines.flow.Flow
 
-class LocalDatabaseTaskFeatureRepository(private val taskEntityDao: TaskEntityDao,) {
+class LocalDatabaseTaskFeatureRepository(private val taskEntityDao: TaskEntityDao) {
 
     suspend fun insertTask(entity: TaskEntity): Long {
         return taskEntityDao.insertTask(entity = entity)

@@ -4,10 +4,10 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import com.example.composeapptask.feature.taskify.createTask.TaskCreationScreen
-import com.example.composeapptask.feature.taskify.home.TaskHomeScreen
-import com.example.composeapptask.feature.taskify.setting.SettingScreen
-import com.example.composeapptask.feature.taskify.taskDetails.TaskDetailsScreen
+import com.example.composeapptask.appFeatures.taskify.createTask.TaskCreationScreen
+import com.example.composeapptask.appFeatures.taskify.home.TaskHomeScreen
+import com.example.composeapptask.appFeatures.taskify.setting.SettingScreen
+import com.example.composeapptask.appFeatures.taskify.taskDetails.TaskDetailsScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
