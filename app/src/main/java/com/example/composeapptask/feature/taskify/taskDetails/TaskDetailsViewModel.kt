@@ -85,6 +85,7 @@ internal class TaskDetailsViewModel @Inject constructor(
 
     private fun emptyFunction2() {
         // pushing code twice with empty body
+        // okay analyize again
     }
 
     private suspend fun updateTask2(updatedTask: TaskEntity) {
