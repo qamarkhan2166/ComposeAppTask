@@ -78,4 +78,8 @@ internal class TaskDetailsViewModel @Inject constructor(
     private fun updateLoadingState(value: Boolean) {
         _uiState.update { it.copy(isLoading = value) }
     }
+
+    private fun emptyFunctin() {
+
+    }
 }

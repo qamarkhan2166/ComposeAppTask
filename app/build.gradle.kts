@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.kotlinAndroidKsp)
     alias(libs.plugins.hiltAndroid)
     id("kotlin-parcelize")
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.ktlint)
 }
 
 android {
@@ -49,6 +51,19 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    ktlint {
+        version.set("0.50.0")
+        android.set(true)
+        outputColorName.set("RED")
+        reporters {
+            reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
+        }
+        filter {
+            exclude("**/generated/**")
+            include("**/kotlin/**")
         }
     }
 }

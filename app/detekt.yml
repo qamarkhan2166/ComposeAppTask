@@ -1,0 +1,36 @@
+build:
+  maxIssues: 0 # Do not allow any Detekt warnings
+
+style:
+  MagicNumber:
+    active: true
+    ignoreNumbers: [-1, 0, 1, 2] # allow basic numbers
+  StringLiteralDuplication:
+    active: false # Optional: turn ON if you want strict checks
+
+naming:
+  FunctionNaming:
+    active: true
+    functionPattern: '^[a-z][A-Za-z0-9]*$' # camelCase
+  VariableNaming:
+    active: true
+
+complexity:
+  LongMethod:
+    active: true
+    threshold: 50 # if a function is too long, Detekt will complain
+  TooManyFunctions:
+    active: false # disable if needed
+
+empty-blocks:
+  EmptyCatchBlock:
+    active: true
+    allowedExceptionNameRegex: "^ignored$"
+
+comments:
+  CommentOverPrivateFunction:
+    active: false # Private methods don't require comments
+
+compose:
+  ComposeMultipleContentEmitters:
+    active: true
