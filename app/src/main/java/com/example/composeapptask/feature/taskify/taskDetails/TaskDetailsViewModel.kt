@@ -79,7 +79,15 @@ internal class TaskDetailsViewModel @Inject constructor(
         _uiState.update { it.copy(isLoading = value) }
     }
 
-    private fun emptyFunctin() {
+    private fun emptyFunction() {
+        updateTask2()
+    }
 
+    private fun emptyFunction2() {
+        // pushing code twice with empty body
+    }
+
+    private suspend fun updateTask2(updatedTask: TaskEntity) {
+        localStorageRepo.updateTask(updatedTask)
     }
 }
