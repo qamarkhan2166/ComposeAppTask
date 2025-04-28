@@ -76,15 +76,16 @@ internal class TaskDetailsViewModel @Inject constructor(
     }
 
     private fun updateLoadingState(value: Boolean) {
-        _uiState.update { it.copy(isLoading = value) }
+        _uiState.update { it.copy(   isLoading =
+        value) }
     }
 
-    /*private fun emptyFunction() {
-        updateTask2()
+    private fun emptyFunctioqn() {
+        // updateTask2()
         //dadsda
     }
 
-    private fun emptyFunction2() {
+    private fun emptyFunctiosnifafunctionistoolongDetektwillcomplain() {
         // pushing code twice with empty body
         // okay analyize again
         // adasdsa
@@ -92,5 +93,5 @@ internal class TaskDetailsViewModel @Inject constructor(
 
     private suspend fun updateTask2(updatedTask: TaskEntity) {
         localStorageRepo.updateTask(updatedTask)
-    }*/
+    }
 }
