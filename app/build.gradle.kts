@@ -1,3 +1,5 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,10 +7,12 @@ plugins {
     alias(libs.plugins.kotlinAndroidKsp)
     alias(libs.plugins.hiltAndroid)
     id("kotlin-parcelize")
-    alias(libs.plugins.detekt)
-    alias(libs.plugins.ktlint)
-}
+    // alias(libs.plugins.detekt)
+    // alias(libs.plugins.ktlint)
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 
+}
+apply(from = "../scripts/build/git-hooks.gradle.kts")
 android {
     namespace = "com.example.composeapptask"
     compileSdk = 35
@@ -53,17 +57,19 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-
     ktlint {
-        version.set("0.50.0")
-        android.set(true)
-        outputColorName.set("RED")
+        android = true
+        ignoreFailures = false
+        outputToConsole = true
+        outputColorName = "RED"
         reporters {
-            reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
+            reporter(ReporterType.PLAIN)
+            reporter(ReporterType.CHECKSTYLE)
+            reporter(ReporterType.SARIF)
         }
         filter {
-            exclude("**/generated/**")
-            include("**/kotlin/**")
+            exclude("**/generated/**/*.kt")
+            exclude("**/kotlin/**")
         }
     }
 }
